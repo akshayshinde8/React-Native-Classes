@@ -1,47 +1,51 @@
-import { ScrollView, Text, View, StatusBar, FlatList, Pressable } from "react-native";
-import { styles, backGroundColor } from './styles';
-import { useState, useEffect } from "react";
+import { View, Text, StyleSheet, StatusBar } from 'react-native';
+import { ErrorBoundary } from 'react-error-boundary';
 
-const App = () => {
 
-    const [todos, setTodos] = useState([]);
+const ErrorFallback = ({ error }) => (
+    <View style={styles.container}>
+        <Text style={styles.title}>⚠️ Crash</Text>
+        <Text style={styles.error}>{error.message}</Text>
+    </View>
+);
 
-    const addTODO = () => {
-        console.log("Add TODO");
-        const calculatedId = !todos || todos.length <= 0 ? 1 : (todos[todos.length - 1]?.id || 0) + 1;
-        const newTodo = {
-            id: calculatedId,
-            title: `Todo - ${calculatedId}`
-        }
-        setTodos(prev => [...prev, newTodo])
-    }
-    const deleteTodo = (id) => {
-        console.log("Delete Todo", id);
-    }
-    const editTodo = (id) => {
-        console.log("edit Todo", id);
-    }
+const RiskyComponent = () => {
+    // throw new Error('get all products is undefined!');
+    let x;
+    return <Text>This won’t render {x.length}.</Text>;
+};
 
-    const renderItems = ({ item }) =>
-        <Pressable onLongPress={deleteTodo(item.id)} onPress={editTodo(item.id)}>
-            <Text style={styles.singleItem}>{item.title}</Text>
-        </Pressable>
+const App = () => (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <View style={{ height: 250 }}>
+            <StatusBar />
+            <Text>Hello World</Text>
+            <RiskyComponent />
+        </View>
+    </ErrorBoundary>
+);
 
-    return <View style={{ flex: 1, padding: 10, rowGap: 10, backgroundColor: "green" }}>
-        <StatusBar />
-        <Pressable style={styles.singleItem} onPress={addTODO}>
-            <Text>Add ToDo</Text>
-        </Pressable>
-        {
-            todos.length <= 0
-                ? <Text>NO TODOS</Text>
-                : <FlatList
-                    data={todos}
-                    renderItem={renderItems}
-                    keyExtractor={item => item.id}
-                />
-        }
-    </View >
-}
-export default App;
+export default App
 
+// Styles
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        padding: 20,
+        backgroundColor: '#ffebee',
+    },
+    title: {
+        fontSize: 24,
+        color: '#d32f2f',
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    error: {
+        color: '#d32f2f',
+        marginBottom: 20,
+    },
+    advice: {
+        color: '#555',
+    },
+});
