@@ -11,7 +11,6 @@ function MyStack() {
             screenOptions={{
                 headerShown: false,
             }}
-            initialRouteName='ProductDetails'
         >
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />

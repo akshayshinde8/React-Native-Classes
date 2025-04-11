@@ -7,7 +7,7 @@ const Products = ({ item, handleLiked }) => {
     const navigation = useNavigation();
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate("ProductDetails", { item })}
+            onPress={() =>{ navigation.navigate("ProductDetails", { item });}}
             style={styles.container}
         >
             <Image source={{ uri: item.image }} style={styles.img} />
@@ -40,7 +40,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginLeft: 10,
         // borderWidth: 1,
-        // borderColor: "black"
+        // borderColor: "black",
+        // resizeMode:"contain"
     },
     textContainer: {
         paddingHorizontal: 15
