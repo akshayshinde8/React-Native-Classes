@@ -1,69 +1,58 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView, Platform, } from 'react-native';
 import React, { useState } from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import auth from '@react-native-firebase/auth';
-import { getAuth, createUserWithEmailAndPassword } from '@react-native-firebase/auth';
-import { getApp } from '@react-native-firebase/app';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, SafeAreaView, } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import LinearGradient from 'react-native-linear-gradient';
 
-const SignUpScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [secureEntry, setSecureEntry] = useState(true); // Toggle password visibility
+    const [secureEntry, setSecureEntry] = useState(true);
 
-    const onRegister = () => {
-        if (!email.trim() || !password.trim()) {
-            Alert.alert('⚠️ Required Fields', 'Please enter both email and password.');
+    const handleLogin = () => {
+        if (!email || !password) {
+            Alert.alert('Error', 'Please enter both email and password.');
             return;
         }
-        if (password.length < 6) {
-            Alert.alert('🔐 Weak Password', 'Password must be at least 6 characters.');
-            return;
-        }
-
-        const auth = getAuth(getApp());
-        createUserWithEmailAndPassword(auth, email, password)
+        auth()
+            .signInWithEmailAndPassword(email, password)
             .then(() => {
-                Alert.alert('✅ Success', 'User account created!');
+                Alert.alert('✅ Success', 'User Login Successfully!');
                 setEmail('');
                 setPassword('');
                 navigation.replace("MainApp");
             })
             .catch(error => {
-                if (error.code === 'auth/email-already-in-use') {
-                    Alert.alert('⚠️ Email Taken', 'That email address is already in use!');
-                } else if (error.code === 'auth/invalid-email') {
-                    Alert.alert('❌ Invalid Email', 'That email address is invalid!');
+                if (error.code === 'auth/wrong-password') {
+                    Alert.alert('Password is not correct!');
                 } else {
-                    Alert.alert('Error', error.message);
+                    Alert.alert('Error', "Either Email or Password Wrong");
                 }
             });
     };
 
     return (
         <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            >
-                <Text style={styles.title}>Create Account</Text>
+            <SafeAreaView>
+                <Text style={styles.title}>Welcome Back 👋</Text>
 
                 <TextInput
-                    placeholder="Email Address"
-                    placeholderTextColor="#aaa"
                     style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
+                    placeholder="Email"
+                    placeholderTextColor="#aaa"
                     keyboardType="email-address"
                     autoCapitalize="none"
+                    onChangeText={setEmail}
+                    value={email}
                 />
                 <View style={styles.passwordContainer}>
                     <TextInput
+                        style={styles.passwordInput}
                         placeholder="Password"
                         placeholderTextColor="#aaa"
-                        style={styles.passwordInput}
-                        value={password}
-                        onChangeText={setPassword}
                         secureTextEntry={secureEntry}
+                        onChangeText={setPassword}
+                        value={password}
                     />
                     <TouchableOpacity
                         onPress={() => setSecureEntry(prev => !prev)}
@@ -77,39 +66,41 @@ const SignUpScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={onRegister}>
-                    <Text style={styles.buttonText}>Register</Text>
+                <TouchableOpacity style={styles.button} onPress={handleLogin}>
+                    <Text style={styles.buttonText}>Log In</Text>
                 </TouchableOpacity>
 
                 <Text style={styles.footer}>
-                    Have an account?{' '}
+                    Don't have an account?{' '}
                     <Text
                         style={{ color: '#E96E6E', fontWeight: 'bold' }}
-                        onPress={() => navigation.navigate('Login')}
+                        onPress={() => navigation.navigate('SignUp')}
                     >
-                        Log In
+                        Sign up
                     </Text>
                 </Text>
-            </KeyboardAvoidingView>
+
+                {/* <Text style={styles.footer}>Don't have an account? Sign up</Text> */}
+            </SafeAreaView>
         </LinearGradient>
     );
 };
 
-export default SignUpScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 24,
+        backgroundColor: '#fff',
         justifyContent: 'center',
-        backgroundColor: '#FFFFFF',
+        paddingHorizontal: 30,
     },
     title: {
         fontSize: 28,
-        fontWeight: '700',
-        color: '#E96E6E',
+        fontWeight: '600',
         marginBottom: 40,
-        alignSelf: 'center',
+        textAlign: 'center',
+        color: '#E96E6E',
     },
     input: {
         backgroundColor: '#F5F5F5',
@@ -142,16 +133,15 @@ const styles = StyleSheet.create({
     },
     button: {
         backgroundColor: '#E96E6E',
-        paddingVertical: 16,
+        padding: 15,
         borderRadius: 10,
-        alignItems: 'center',
-        elevation: 4,
-        marginTop: 20,
+        marginTop: 10,
     },
     buttonText: {
         color: '#fff',
         fontWeight: '600',
-        fontSize: 18,
+        fontSize: 16,
+        textAlign: 'center',
     },
     footer: {
         textAlign: 'center',
