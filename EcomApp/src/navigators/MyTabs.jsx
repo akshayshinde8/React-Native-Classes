@@ -17,6 +17,7 @@ function MyTabs() {
                 tabBarActiveTintColor: "#E96E6E",
                 // tabBarShowLabel: false
             }}
+            initialRouteName='Cart'
         >
             <Tab.Screen
                 name="Home_Stack"
@@ -27,14 +28,14 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Reorder"
-                component={Cart}
+                component={Home}
                 options={{
                     tabBarIcon: ({ size, color, focused }) => { return <MaterialIcons name={"reorder"} size={size} color={color} /> }
                 }}
             />
             <Tab.Screen
                 name="Cart"
-                component={Home}
+                component={Cart}
                 options={{
                     tabBarIcon: ({ size, color, focused }) => { return <Ionicons name={"cart"} size={size} color={color} /> }
                 }}
