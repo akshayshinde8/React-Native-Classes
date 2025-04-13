@@ -86,7 +86,7 @@ const ProductDetails = () => {
                 <TouchableOpacity
                     onPress={handleAddToCart}
                     style={styles.btn}
-                    // disabled={!selectedSize || !selectedColor}
+                // disabled={!selectedSize || !selectedColor}
                 >
                     <Text style={styles.btnText}>Add To Cart</Text>
                 </TouchableOpacity>

@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../screens/Home';
 import Cart from '../screens/Cart';
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -9,6 +8,8 @@ import MyStack from './MyStack';
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import { Text, View } from 'react-native';
+import ReorderScreen from '../screens/ReorderScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Reorder"
-                component={Home}
+                component={ReorderScreen}
                 options={{
                     tabBarIcon: ({ size, color, focused }) => { return <MaterialIcons name={"reorder"} size={size} color={color} /> }
                 }}
@@ -71,7 +72,7 @@ function MyTabs() {
             />
             <Tab.Screen
                 name="Profile"
-                component={Home}
+                component={ProfileScreen}
                 options={{
                     tabBarIcon: ({ size, color, focused }) => { return <FontAwesome6 name={"user"} size={size} color={color} /> }
                 }}
