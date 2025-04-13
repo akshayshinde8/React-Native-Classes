@@ -14,6 +14,7 @@ function MyStack() {
         >
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="ProductDetails" component={ProductDetails} />
+            {/* <Stack.Screen name="Cart" component={Cart} /> */}
         </Stack.Navigator>
     );
 }

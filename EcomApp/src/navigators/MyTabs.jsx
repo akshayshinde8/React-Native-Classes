@@ -6,6 +6,9 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import MyStack from './MyStack';
+import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
+import { Text, View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +20,6 @@ function MyTabs() {
                 tabBarActiveTintColor: "#E96E6E",
                 // tabBarShowLabel: false
             }}
-            initialRouteName='Cart'
         >
             <Tab.Screen
                 name="Home_Stack"
@@ -37,7 +39,34 @@ function MyTabs() {
                 name="Cart"
                 component={Cart}
                 options={{
-                    tabBarIcon: ({ size, color, focused }) => { return <Ionicons name={"cart"} size={size} color={color} /> }
+                    tabBarIcon: (
+                        { size, color, focused }) => {
+                        const { carts } = useContext(CartContext)
+                        return (
+                            <View style={{ position: "relative" }}>
+                                <Ionicons name={"cart"} size={size} color={color} />
+                                <View style={{
+                                    height: 16,
+                                    width: 16,
+                                    borderRadius: 8,
+                                    backgroundColor: color,
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    position: "absolute",
+                                    top: -11,
+                                    right: -5
+                                }}>
+                                    <Text style={{
+                                        fontSize: 10,
+                                        color: "white",
+                                        fontWeight: "500"
+                                    }}>
+                                        {carts?.length}
+                                    </Text>
+                                </View>
+                            </View>
+                        )
+                    }
                 }}
             />
             <Tab.Screen

@@ -1,22 +1,41 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient'
 import { ScrollView } from 'react-native-gesture-handler'
 import Header from '../components/Header'
+import { CartContext } from '../context/CartContext'
+import { useNavigation, useRoute } from '@react-navigation/native'
 
-const ProductDetails = ({ route }) => {
-    const { item } = route.params;
-    const sizes = ["S", "M", "L", "XL"];
-    const colorsArray = ["#91A1B0", "#B11D1D", "#1F44A3", "#9F632A", "#1D752B", "#000000"];
+const sizes = ["S", "M", "L", "XL"];
+const colorsArray = ["#91A1B0", "#B11D1D", "#1F44A3", "#9F632A", "#1D752B", "#000000"];
+
+const ProductDetails = () => {
+    const { addToCart } = useContext(CartContext);
+    const navigation = useNavigation();
+    const route = useRoute();
+    const item = route.params.item;
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedColor, setSelectedColor] = useState(null);
-    const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAgKiRBYVWiv0-ypGWwDs8gVsG80s0DvHGwg&s";
+
+    const handleAddToCart = () => {
+        if (!selectedSize || !selectedColor) {
+            alert("Please select a size and color before adding to cart.");
+            return;
+        }
+        const itemToAdd = {
+            ...item,
+            size: selectedSize,
+            color: selectedColor,
+        };
+        addToCart(itemToAdd);
+        navigation.navigate("Cart");
+    };
 
     return (
         <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
-                <View style={styles.headerstyle}>
-                    <Header />
-                </View>
+            <View style={styles.headerstyle}>
+                <Header />
+            </View>
             <ScrollView>
                 <Image source={{ uri: item.image }} style={styles.CoverImg} />
                 <View style={styles.contentContainer}>
@@ -26,9 +45,10 @@ const ProductDetails = ({ route }) => {
                 <Text style={[styles.title, styles.sizeText]}>Size</Text>
                 <View style={styles.sizeContainer}>
                     {
-                        sizes.map((size) => {
+                        sizes.map((size, index) => {
                             return (
                                 <TouchableOpacity
+                                    key={index}
                                     onPress={() => setSelectedSize(size)}
                                     style={styles.sizeValueContainer}
                                 >
@@ -47,9 +67,10 @@ const ProductDetails = ({ route }) => {
                 <Text style={[styles.title, styles.colorText]}>Color</Text>
                 <View style={styles.colorContainer}>
                     {
-                        colorsArray.map((color) => {
+                        colorsArray.map((color, index) => {
                             return (
                                 <TouchableOpacity
+                                    key={index}
                                     onPress={() => setSelectedColor(color)}
                                     style={[
                                         styles.circleBorder,
@@ -62,7 +83,11 @@ const ProductDetails = ({ route }) => {
                         })
                     }
                 </View>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                    onPress={handleAddToCart}
+                    style={styles.btn}
+                    // disabled={!selectedSize || !selectedColor}
+                >
                     <Text style={styles.btnText}>Add To Cart</Text>
                 </TouchableOpacity>
             </ScrollView>
@@ -82,8 +107,8 @@ const styles = StyleSheet.create({
     },
     CoverImg: {
         width: "100%",
-        aspectRatio:1,
-        resizeMode:"contain"
+        aspectRatio: 1,
+        resizeMode: "contain"
     },
     contentContainer: {
         flexDirection: "row",
@@ -95,12 +120,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: "#444444",
         fontWeight: "500",
-        width:"70%"
+        width: "70%"
     },
     price: {
         color: "#4D4C4C",
-        width:"30%",
-        textAlign:"right"
+        width: "30%",
+        textAlign: "right"
 
     },
     sizeText: {

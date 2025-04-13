@@ -1,25 +1,24 @@
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 
-
-const imgUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsksv7bLZN_QT1cpwRsuJnPOM1OjLM8spaBw&s";
-
-const CartCard = () => {
+const CartCard = ({ item, deleteItemFromCart }) => {
     return (
         <View style={styles.container}>
-            <Image source={{ uri: imgUrl }} style={styles.img} />
+            <Image source={{ uri: item.image }} style={styles.img} />
             <View style={styles.cardContent}>
-                <Text style={styles.imgTitle}>Jeans is Here</Text>
-                <Text style={styles.imgPrice}>$45.66</Text>
+                <Text style={styles.imgTitle}>{item.title}</Text>
+                <Text style={styles.imgPrice}>${item.price}</Text>
                 <View style={styles.circleSizeContainer}>
-                    <View style={styles.circle} />
+                    <View style={[styles.circle, { backgroundColor: item.color }]} />
                     <View style={styles.sizeCircle}>
-                        <Text style={styles.sizeText}>L</Text>
+                        <Text style={styles.sizeText}>{item.size || "N/A"}</Text>
                     </View>
                 </View>
             </View>
-            <FontAwesome6 name={"trash"} size={22} color={"#F68CB5"} />
+            <TouchableOpacity onPress={() => deleteItemFromCart(item)}>
+                <FontAwesome6 name={"trash"} size={22} color={"#F68CB5"} />
+            </TouchableOpacity>
         </View>
     )
 }
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
     img: {
         width: "25%",
         height: 100,
-        borderRadius:10
+        borderRadius: 10
     },
     cardContent: {
         flex: 1,
@@ -53,7 +52,6 @@ const styles = StyleSheet.create({
         width: 32,
         height: 32,
         borderRadius: 16,
-        backgroundColor: "#7094C1",
     },
     circleSizeContainer: {
         flexDirection: "row"

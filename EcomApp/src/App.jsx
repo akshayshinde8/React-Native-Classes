@@ -3,13 +3,16 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import MyStack from './navigators/MyStack';
 import MyTabs from './navigators/MyTabs';
+import { CartProvider } from './context/CartContext';
 
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    <CartProvider>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </CartProvider>
   )
 }
 

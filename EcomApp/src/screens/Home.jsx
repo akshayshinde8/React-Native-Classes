@@ -14,18 +14,34 @@ const Home = () => {
   const [products, setProducts] = useState(data.products);
   const [categorySelected, setcategorySelected] = useState(null);
 
+  const [searchText, setSearchText] = useState("");
+
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+
+
   const handleLiked = (item) => {
-    const newProducts = () => products.map((prod) => {
-      if (prod.id == item.id) {
-        return {
-          ...prod,
-          isLiked: true
-        }
-      }
-      return prod;
-    })
-    setProducts(newProducts);
-  }
+    setProducts(prevProducts =>
+      prevProducts.map((prod) =>
+        prod.id === item.id ? { ...prod, isLiked: true } : prod
+      )
+    );
+  };
+
+  // const handleLiked = (item) => {
+  //   const newProducts = () => products.map((prod) => {
+  //     if (prod.id == item.id) {
+  //       return {
+  //         ...prod,
+  //         isLiked: true
+  //       }
+  //     }
+  //     return prod;
+  //   })
+  //   setProducts(newProducts);
+  // }
 
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
@@ -41,7 +57,13 @@ const Home = () => {
               <View style={styles.iconContainer}>
                 <Fontisto name="search" size={26} color={"#C0C0C0"} />
               </View>
-              <TextInput style={styles.inputInput} placeholder='Search' placeholderTextColor={"#C0C0C0"} />
+              <TextInput
+                style={styles.inputInput}
+                placeholder='Search'
+                placeholderTextColor={"#C0C0C0"}
+                value={searchText}
+                onChangeText={setSearchText}
+              />
             </View>
             {/* categories Section */}
             <FlatList
@@ -53,9 +75,9 @@ const Home = () => {
             />
           </>
         }
-        data={products}
-        // keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => <Products item={item} handleLiked={handleLiked}/>}
+        data={filteredProducts}
+        renderItem={({ item, index }) => <Products item={item} handleLiked={handleLiked} />}
+        keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 50 }}
       />
     </LinearGradient>
