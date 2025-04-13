@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, TextInput, View } from 'react-native'
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import React, { useState } from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
@@ -7,41 +7,43 @@ import Category from '../components/Category';
 import Products from '../components/Products';
 import data from '../data/data.json'
 
-const categories = ["Trending Now", "All", "New", "Mens", "Womens"];
+const categories = ["All", "Clothing", "FootWear", "Men", "Women"];
 
 const Home = () => {
 
   const [products, setProducts] = useState(data.products);
-  const [categorySelected, setcategorySelected] = useState(null);
-
+  const [categorySelected, setcategorySelected] = useState("All");
+  const [refreshing, setRefreshing] = useState(false);
   const [searchText, setSearchText] = useState("");
 
-  const filteredProducts = products.filter(product =>
-    product.title.toLowerCase().includes(searchText.toLowerCase())
-  );
+  const filteredProducts = products.filter(product => {
+    const titleMatch = product.title.toLowerCase().includes(searchText.toLowerCase());
 
+    // Handle 'All'
+    if (categorySelected === "All") return titleMatch;
 
+    // Match category or gender
+    const categoryMatch = product.category.toLowerCase() === categorySelected.toLowerCase();
+    const genderMatch = product.gender.toLowerCase() === categorySelected.toLowerCase();
+
+    return titleMatch && (categoryMatch || genderMatch);
+  });
 
   const handleLiked = (item) => {
     setProducts(prevProducts =>
       prevProducts.map((prod) =>
-        prod.id === item.id ? { ...prod, isLiked: true } : prod
+        prod.id === item.id ? { ...prod, isLiked: !prod.isLiked } : prod
       )
     );
   };
 
-  // const handleLiked = (item) => {
-  //   const newProducts = () => products.map((prod) => {
-  //     if (prod.id == item.id) {
-  //       return {
-  //         ...prod,
-  //         isLiked: true
-  //       }
-  //     }
-  //     return prod;
-  //   })
-  //   setProducts(newProducts);
-  // }
+  const handleRefresh = () => {
+    setRefreshing(true);
+    setSearchText('');
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 1500);
+  };
 
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
@@ -79,6 +81,13 @@ const Home = () => {
         renderItem={({ item, index }) => <Products item={item} handleLiked={handleLiked} />}
         keyExtractor={(item) => item.id}
         contentContainerStyle={{ paddingBottom: 50 }}
+        ListEmptyComponent={() => (
+          <View style={styles.emptyContainer}>
+            <Text style={styles.emptyText}>No products found 😕</Text>
+          </View>
+        )}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
       />
     </LinearGradient>
   )
@@ -110,5 +119,15 @@ const styles = StyleSheet.create({
   inputInput: {
     flex: 1,
     color: "#000000",
-  }
+  },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 40,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: '#999',
+  },
 })
