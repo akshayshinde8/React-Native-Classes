@@ -1,40 +1,54 @@
 # 🔥 Trenzon – "Where Trends Live" 💬  
-A modern and minimal eCommerce app built with **React Native**, featuring clean design, seamless navigation, and user-focused experience.
+A modern eCommerce experience built with **React Native**. Seamlessly browse, shop, and manage your cart with intuitive design and lightning performance.
 
 ---
 
-## 🚀 Features
+## 🎥 Live Walkthrough
 
-- 🔐 **Firebase Authentication**
-  - Signup / Login with email and password
-- 🏠 **Home Screen**
-  - Entry point after successful login
-- 🛍️ **Products Page**
-  - List of products with images, title, and price
-- 🔎 **Product Details**
-  - Choose product size and color before adding to cart
-- 🛒 **Cart Page**
-  - Add/remove items from cart
-  - View total and grand total
-- 🌈 **State Management**
-  - Managed using **Context API**
-- 💾 **Persistent Cart Storage**
-  - Cart is saved per user using **AsyncStorage**
-- 🔁 **Navigation**
-  - Stack Navigation (Auth flow, details, etc.)
-  - Bottom Tab Navigation (Main sections)
+👉 [Watch Demo on Google Drive](https://your-drive-link-here.com)
+
+---
+
+## 📱 About the App
+
+Trenzon is a **fully functional eCommerce mobile app** built using **React Native**, integrating **Firebase authentication**, **context-based cart management**, and **persistent local storage**. The app features:
+
+- 🔐 **User Authentication**
+- 🛒 **Add to Cart, Remove from Cart**
+- 👕 **Select Product Size & Color**
+- 🧭 **Stack + Tab Navigation**
+- 💾 **User-specific persistent cart using AsyncStorage**
+- 🧠 **Context API-based global state**
+- 🔍 **Search & Sort Products**
+- 🧍 **Gender & Category Filters**
+- 🎨 **Clean, user-friendly UI**
+
+---
+
+## 📦 Upcoming Features
+
+> Already in progress/planned:
+- 📍 Location Access with **Map Integration**
+- 👤 Profile Page with order history
+- 💳 Pay on Delivery (Cash on Delivery)
+- 📦 Reordering previous items
 
 ---
 
 ## 🧠 Tech Stack
 
-- **React Native**
-- **Firebase Auth**
-- **Context API**
-- **React Navigation (Stack & Bottom Tabs)**
-- **AsyncStorage (per-user cart storage)**
+| Tech         | Usage                                |
+|--------------|---------------------------------------|
+| React Native | App development                       |
+| Firebase     | Authentication                        |
+| AsyncStorage | Local per-user cart persistence       |
+| Context API  | Global state management (Cart)        |
+| React Navigation | Stack & Bottom Tab navigation     |
 
 ---
 
-## 📦 Folder Structure
+## 🧭 Folder Structure
 
+Here's how the codebase is organized:
+
+EcomApp/ │ ├── src/ │ ├── assets/ # Images & icons │ ├── components/ # Reusable UI components │ │ ├── CartCard.jsx │ │ ├── Category.jsx │ │ ├── Header.jsx │ │ └── Products.jsx │ │ │ ├── context/ │ │ └── CartContext.js # Global cart context │ │ │ ├── data/ # (Reserved for mock/product data) │ │ │ ├── navigators/ # Navigation files │ │ ├── MyStack.jsx │ │ ├── MyTabs.jsx │ │ └── RootNavigator.jsx │ │ │ └── screens/ # All app screens │ ├── Cart.jsx │ ├── Home.jsx │ ├── LoginScreen.jsx │ ├── ProductDetails.jsx │ ├── ProfileScreen.jsx │ ├── ReorderScreen.jsx │ └── SignUpScreen.jsx │ ├── App.jsx # Entry point ├── .eslintrc.js ├── .prettierrc.js ├── .watchmanconfig ├── app.json └── .gitignore
