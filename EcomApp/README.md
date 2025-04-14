@@ -5,7 +5,7 @@ A modern eCommerce experience built with **React Native**. Seamlessly browse, sh
 
 ## 🎥 Live Walkthrough
 
-👉 [Watch Demo on Google Drive](https://your-drive-link-here.com)
+👉 [Watch Demo on Google Drive](https://drive.google.com/file/d/1RE394QDGjpmEwEY8rb7sJDIWC5OgpwlY/view?usp=sharing)
 
 ---
 
@@ -47,6 +47,26 @@ Trenzon is a **fully functional eCommerce mobile app** built using **React Nativ
 | React Navigation | Stack & Bottom Tab navigation           |
 
 ---
+## 📸 Glimpse and Screenshots of Trenzon
+
+<table>
+   <tr align="center">
+     <td colspan="3"><b>Sign Up Page</b><br>
+       <img src="https://drive.google.com/uc?export=view&id=1YxyC2f01xIoGxRvdNhLozzZK1KqC0fqb" width="250"/>
+     </td>
+   </tr>
+   <tr align="center">
+     <td><b>Log In Page</b><br>
+       <img src="https://drive.google.com/uc?export=view&id=179kO6LPIsEnY6FBSnOgB4ZpMFq9wmDPY" height="250"/>
+     </td>
+     <td><b>Home Page</b><br>
+       <img src="https://drive.google.com/uc?export=view&id=1SxlNHJdOncScX9Rtc2z-IWMUkiF4zZ25" height="250"/>
+     </td>
+     <td><b>Cart Page</b><br>
+       <img src="https://drive.google.com/uc?export=view&id=1-Al58WhaFhiNibsnkWFm0wUSCg-Dn3hQ" height="250"/>
+     </td>
+   </tr>
+</table>
 
 ## Run the App
 
