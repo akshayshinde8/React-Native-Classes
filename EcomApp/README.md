@@ -37,18 +37,66 @@ Trenzon is a **fully functional eCommerce mobile app** built using **React Nativ
 
 ## 🧠 Tech Stack
 
-| Tech         | Usage                                |
-|--------------|---------------------------------------|
-| React Native | App development                       |
-| Firebase     | Authentication                        |
-| AsyncStorage | Local per-user cart persistence       |
-| Context API  | Global state management (Cart)        |
-| React Navigation | Stack & Bottom Tab navigation     |
+| Tech             | Usage                                  |
+|------------------|-----------------------------------------|
+| React Native     | Cross-platform mobile development       |
+| Firebase         | Authentication                         |
+| AsyncStorage     | Local per-user cart persistence         |
+| Context API      | Global state management (Cart, Auth)    |
+| React Navigation | Stack & Bottom Tab navigation           |
 
 ---
 
 ## 🧭 Folder Structure
 
-Here's how the codebase is organized:
+```plaintext
+EcomApp/
+├── src/
+│   ├── assets/               # Images & icons
+│   ├── components/           # Reusable UI components
+│   │   ├── CartCard.jsx
+│   │   ├── Category.jsx
+│   │   ├── Header.jsx
+│   │   └── Products.jsx
+│   ├── context/
+│   │   └── CartContext.js    # Global cart context
+│   ├── data/                 # Reserved for product/mock data
+│   ├── navigators/           # All navigation configurations
+│   │   ├── MyStack.jsx
+│   │   ├── MyTabs.jsx
+│   │   └── RootNavigator.jsx
+│   ├── screens/              # App screens
+│   │   ├── Cart.jsx
+│   │   ├── Home.jsx
+│   │   ├── LoginScreen.jsx
+│   │   ├── ProductDetails.jsx
+│   │   ├── ProfileScreen.jsx
+│   │   ├── ReorderScreen.jsx
+│   │   └── SignUpScreen.jsx
+│   └── App.jsx               # App entry point
+├── .eslintrc.js
+├── .prettierrc.js
+├── .watchmanconfig
+├── app.json
+└── .gitignore
 
-EcomApp/ │ ├── src/ │ ├── assets/ # Images & icons │ ├── components/ # Reusable UI components │ │ ├── CartCard.jsx │ │ ├── Category.jsx │ │ ├── Header.jsx │ │ └── Products.jsx │ │ │ ├── context/ │ │ └── CartContext.js # Global cart context │ │ │ ├── data/ # (Reserved for mock/product data) │ │ │ ├── navigators/ # Navigation files │ │ ├── MyStack.jsx │ │ ├── MyTabs.jsx │ │ └── RootNavigator.jsx │ │ │ └── screens/ # All app screens │ ├── Cart.jsx │ ├── Home.jsx │ ├── LoginScreen.jsx │ ├── ProductDetails.jsx │ ├── ProfileScreen.jsx │ ├── ReorderScreen.jsx │ └── SignUpScreen.jsx │ ├── App.jsx # Entry point ├── .eslintrc.js ├── .prettierrc.js ├── .watchmanconfig ├── app.json └── .gitignore
+---
+
+
+## Run the App
+
+npx react-native run-android
+or
+npx react-native run-ios
+
+
+## 👨‍💻 Developer
+
+Made with ❤️ by Akshay Shinde
+📧 Feel free to reach out for collaborations, feedback, or questions!
+
+
+## 📬 Feedback & Contributions
+
+Pull requests and suggestions are welcome!
+Let's make Trenzon the next big shopping experience 📈
