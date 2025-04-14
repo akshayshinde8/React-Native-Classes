@@ -48,13 +48,27 @@ Trenzon is a **fully functional eCommerce mobile app** built using **React Nativ
 
 ---
 ## 📸 Glimpse and Screenshots of Trenzon
-
 <p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1YxyC2f01xIoGxRvdNhLozzZK1KqC0fqb" height="400"/>
+  &nbsp;&nbsp;&nbsp;
   <img src="https://drive.google.com/uc?export=view&id=179kO6LPIsEnY6FBSnOgB4ZpMFq9wmDPY" height="400"/>
+</p>
+<p align="center">
+  <b>Sign Up Page</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Log In Page</b>
+</p>
+
+<p align="center">
   <img src="https://drive.google.com/uc?export=view&id=1SxlNHJdOncScX9Rtc2z-IWMUkiF4zZ25" height="400"/>
+  &nbsp;&nbsp;&nbsp;
   <img src="https://drive.google.com/uc?export=view&id=1-Al58WhaFhiNibsnkWFm0wUSCg-Dn3hQ" height="400"/>
+  &nbsp;&nbsp;&nbsp;
   <img src="https://drive.google.com/uc?export=view&id=11Dsuws3yuarlLoTp65uqeT1GfRHZY32G" height="400"/>
+</p>
+<p align="center">
+  <b>Home Page</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Cart Page</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Product Details Page</b>
 </p>
 
 
