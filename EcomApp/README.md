@@ -25,6 +25,7 @@ Trenzon is a **fully functional eCommerce mobile app** built using **React Nativ
 
 ---
 
+
 ## 📦 Upcoming Features
 
 > Already in progress/planned:
@@ -46,6 +47,25 @@ Trenzon is a **fully functional eCommerce mobile app** built using **React Nativ
 | React Navigation | Stack & Bottom Tab navigation           |
 
 ---
+
+## Run the App
+
+npx react-native run-android
+or
+npx react-native run-ios
+
+
+## 👨‍💻 Developer
+
+Made with ❤️ by Akshay Shinde
+📧 Feel free to reach out for collaborations, feedback, or questions!
+
+
+## 📬 Feedback & Contributions
+
+Pull requests and suggestions are welcome!
+Let's make Trenzon the next big shopping experience 📈
+
 
 ## 🧭 Folder Structure
 
@@ -79,24 +99,3 @@ EcomApp/
 ├── .watchmanconfig
 ├── app.json
 └── .gitignore
-
----
-
-
-## Run the App
-
-npx react-native run-android
-or
-npx react-native run-ios
-
-
-## 👨‍💻 Developer
-
-Made with ❤️ by Akshay Shinde
-📧 Feel free to reach out for collaborations, feedback, or questions!
-
-
-## 📬 Feedback & Contributions
-
-Pull requests and suggestions are welcome!
-Let's make Trenzon the next big shopping experience 📈
