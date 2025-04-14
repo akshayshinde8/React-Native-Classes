@@ -1,10 +1,33 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity, View, Alert } from 'react-native'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
+import auth from '@react-native-firebase/auth';
 
 const Header = ({ isCart }) => {
     const navigation = useNavigation();
+    const logout = async () => {
+        try {
+            await auth().signOut();
+            Alert.alert("Success", "You have been logged out successfully.");
+            navigation.replace("Login");
+        } catch (error) {
+            console.error("Logout failed:", error);
+            Alert.alert("Error", "Something went wrong during logout. Please try again.");
+        }
+    };
+
+    const confirmLogout = () => {
+        Alert.alert(
+            "Logout",
+            "Are you sure you want to logout?",
+            [
+                { text: "Cancel", style: "cancel" },
+                { text: "Yes", onPress: logout }
+            ]
+        );
+    };
+
     return (
         <View style={styles.container}>
             <TouchableOpacity
@@ -17,7 +40,10 @@ const Header = ({ isCart }) => {
                 }
             </TouchableOpacity>
             {isCart && <Text style={styles.myCart}>My Cart</Text>}
-            <Image source={require("../assets/dp.png")} style={styles.dp} />
+            <TouchableOpacity onPress={confirmLogout} style={styles.logoutButton}>
+                <Text style={styles.logoutText}>Logout</Text>
+            </TouchableOpacity>
+            {/* <Image source={require("../assets/dp.png")} style={styles.dp} /> */}
         </View>
     )
 }
@@ -50,5 +76,17 @@ const styles = StyleSheet.create({
     myCart: {
         fontSize: 28,
         color: "black",
-    }
+    },
+    logoutButton: {
+        backgroundColor: '#E96E6E',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    logoutText: {
+        color: '#FFF',
+        fontSize: 16,
+        fontWeight: '600',
+    },
 })

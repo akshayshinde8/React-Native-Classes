@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import CartCard from '../components/CartCard'
 import { CartContext } from '../context/CartContext'
 
-
 const Cart = () => {
   const { carts, totalPrice, deleteItemFromCart } = useContext(CartContext)
   return (
@@ -36,10 +35,7 @@ const Cart = () => {
           </>
         }
         contentContainerStyle={{ paddingBottom: 10 }}
-
       />
-
-
       <TouchableOpacity style={styles.checkoutContainer}>
         <Text style={styles.btnText}>Checkout</Text>
       </TouchableOpacity>
