@@ -36,14 +36,13 @@ const Header = ({ isCart }) => {
             >
                 {
                     isCart ? <Ionicons name={"chevron-back"} color={"#E96E6E"} size={25} />
-                        : <Image source={require("../assets/headerIcon.png")} style={styles.headerIcon} />
+                        : <Image source={require("../assets/TrendZonHeader.png")} style={styles.headerIcon} />
                 }
             </TouchableOpacity>
             {isCart && <Text style={styles.myCart}>My Cart</Text>}
             <TouchableOpacity onPress={confirmLogout} style={styles.logoutButton}>
                 <Text style={styles.logoutText}>Logout</Text>
             </TouchableOpacity>
-            {/* <Image source={require("../assets/dp.png")} style={styles.dp} /> */}
         </View>
     )
 }
@@ -65,8 +64,9 @@ const styles = StyleSheet.create({
         borderRadius: 22
     },
     headerIcon: {
-        height: 28,
-        width: 28,
+        height: 40,
+        width: 40,
+        borderRadius: 20
     },
     dp: {
         height: 44,
