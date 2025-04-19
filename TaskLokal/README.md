@@ -5,7 +5,7 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 ## Screenshots :
 <table>
    <tr align=center>
-     <td  colspan=3>Landing Page<img src="assets\image.png" width=1000 ></td>
+     <td  colspan=3>Landing Page<img src="assets/image.png" width=1000 ></td>
   </tr>
 </table>
 
