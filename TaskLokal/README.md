@@ -2,6 +2,13 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
+## Screenshots :
+<table>
+   <tr align=center>
+     <td  colspan=3>Landing Page<img src="TaskLokal\src\assets\image.png" width=1000 ></td>
+  </tr>
+</table>
+
 > **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
 ## Step 1: Start Metro
