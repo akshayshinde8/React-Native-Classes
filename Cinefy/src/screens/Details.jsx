@@ -1,4 +1,4 @@
-import { Image, Linking, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, Linking, Platform, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import LinearGradient from 'react-native-linear-gradient';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -18,12 +18,12 @@ const Details = ({ route }) => {
           <Text style={styles.lang}>Language: {movie.language}</Text>
           <Text style={styles.runtime}>Duration: {movie.runtime} Mins</Text>
         </View>
+        <View style={styles.content}>
+          <Text style={styles.ratings}>Ratings: {movie.rating.average || "N/A"}</Text>
+          <Text style={styles.officialSite} onPress={() => movie.officialSite ? Linking.openURL(movie.officialSite) : Alert.alert("Official site not available")}>Visit Us</Text>
+        </View>
         <Text style={styles.lang}>Summary:</Text>
         <RenderHTML tagsStyles={tagStyle} contentWidth={width} source={{ html: movie.summary || "No summary available" }} />
-        <View style={[styles.content, { paddingBottom: 20 }]}>
-          <Text style={styles.ratings}>Ratings: {movie.rating.average || "N/A"}</Text>
-          <Text style={styles.officialSite} onPress={() => Linking.openURL(movie.officialSite)}>Visit Us</Text>
-        </View>
       </ScrollView>
     </LinearGradient>
   )
@@ -39,54 +39,59 @@ const styles = StyleSheet.create({
     width: "100%",
     aspectRatio: 1,
     resizeMode: "stretch",
-    marginBottom: 10,
-    borderRadius: 12,
+    marginBottom: 20,
+    borderRadius: 20,
   },
   contentContainer: {
     marginHorizontal: 20,
-    marginVertical: 20,
+    marginTop: 10
   },
   title: {
-    fontSize: 20,
-    fontWeight: "500",
-    color: "#444444"
+    fontSize: 26,
+    fontWeight: "bold",
+    color: "#222",
+    marginBottom: 10,
   },
   genre: {
-    fontSize: 17,
-    fontWeight: "500",
-    color: "#444444"
-  },
-  ratings: {
-    fontSize: 17,
-    fontWeight: "500",
-    color: "#444444"
+    fontSize: 18,
+    color: "#666",
+    marginBottom: 10,
+    fontWeight: '600',
   },
   content: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginBottom: 10,
   },
   lang: {
-    fontSize: 17,
-    fontWeight: "500",
-    color: "#444444",
+    fontSize: 16,
+    color: "#444",
+    fontWeight: '500',
   },
   runtime: {
-    fontSize: 17,
-    fontWeight: "500",
-    color: "#444444",
+    fontSize: 16,
+    color: "#444",
+    fontWeight: '500',
   },
-  summary: {
-    fontSize: 14,
-    textAlign: "justify",
-    fontWeight: "500",
-    color: "#444444",
+  ratings: {
+    fontSize: 16,
+    color: "#111",
+    fontWeight: "600",
   },
   officialSite: {
-    fontSize: 17,
-    fontWeight: "500",
+    fontWeight: "600",
     color: "blue",
-    textDecorationLine: "underline"
-  }
+    textDecorationLine: "underline",
+    fontSize: 16,
+  },
+  summary: {
+    fontSize: 15,
+    lineHeight: 22,
+    textAlign: "justify",
+    color: "#333",
+    marginBottom: 20,
+    paddingBottom: 20
+  },
 })
 
 const tagStyle = {

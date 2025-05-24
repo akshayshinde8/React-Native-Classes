@@ -15,7 +15,7 @@ const Home = () => {
   let fetchData = async () => {
     setLoading(true);
     try {
-      let res = await fetch(`https://api.tvmaze.com/shows`);
+      let res = await fetch("https://api.tvmaze.com/shows");
       let data = await res.json();
       setMovies(data);
       setFilterdMovies(data);
@@ -52,14 +52,14 @@ const Home = () => {
         <View style={styles.textContainer}>
           <Text style={styles.title}>{item.name}</Text>
           <Text style={styles.genre}>Genre: {item.genres.join(", ")}</Text>
-          <Text style={styles.ratings}>Ratings: {item.rating.average ?? "N/A"}</Text>
+          <Text style={styles.ratings}>Ratings: {item.rating?.average ?? "N/A"}</Text>
         </View>
       </TouchableOpacity>
     )
   }
 
   if (loading) {
-    return <ActivityIndicator style={styles.loader} size="large" color="#0000ff" />;
+    return <ActivityIndicator style={styles.loader} size="large" color="blue" />;
   }
 
   return (
@@ -76,7 +76,6 @@ const Home = () => {
         keyExtractor={(item) => item.id.toString()}
         data={filterdMovies}
         renderItem={renderItems}
-        columnWrapperStyle={{ justifyContent: "space-between" }}
         contentContainerStyle={{ paddingHorizontal: 10, paddingBottom: 100, }}
         refreshing={refreshing}
         onRefresh={handleRefresh}
@@ -93,17 +92,25 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
-  loader: { flex: 1, justifyContent: "center", alignItems: "center" },
+  loader: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
   container: {
     flex: 1,
     position: "relative",
     // borderWidth: 1,
   },
   inputField: {
-    padding: 10,
+    padding: 12,
     borderWidth: 1,
-    borderRadius: 5,
-    margin: 10
+    borderRadius: 12,
+    margin: 12,
+    borderColor: '#ccc',
+    fontSize: 16,
+    backgroundColor: '#fff',
+    color: '#333'
   },
   img: {
     width: "90%",
@@ -115,22 +122,21 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textContainer: {
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   title: {
     fontSize: 18,
     fontWeight: "600",
-    color: "#444444",
+    color: "#222",
+    marginBottom: 4,
   },
   genre: {
-    fontSize: 16,
-    fontWeight: "400",
-    color: "#444444",
+    fontSize: 14,
+    color: "#666",
   },
   ratings: {
-    fontSize: 16,
-    fontWeight: "400",
-    color: "#444444",
+    fontSize: 14,
+    color: "#444",
   },
   emptycon: {
     flex: 1,
@@ -139,5 +145,6 @@ const styles = StyleSheet.create({
   },
   emptytext: {
     fontSize: 20,
+    color: "#999"
   },
 })
